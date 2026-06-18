@@ -72,7 +72,12 @@ function FullbleedProduct({ p }: { p: Product }) {
       <div className={`container-x relative z-10 flex min-h-[680px] items-center py-14 md:min-h-[900px] md:py-20 ${
         cardLeft ? 'justify-start' : 'justify-end'
       }`}>
-        <Reveal className={`w-full ${cardLeft ? 'max-w-sm md:max-w-md' : 'max-w-md md:max-w-lg'}`}>
+        <Reveal
+          from={cardLeft ? 'tilt-left' : 'tilt-right'}
+          distance={56}
+          blur={6}
+          className={`w-full ${cardLeft ? 'max-w-sm md:max-w-md' : 'max-w-md md:max-w-lg'}`}
+        >
           <FeatureCard p={p} />
         </Reveal>
       </div>

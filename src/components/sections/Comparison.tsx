@@ -13,7 +13,7 @@ export function Comparison() {
       aria-labelledby="cmp-title"
     >
       <div className="container-x py-16 md:py-24">
-        <Reveal>
+        <Reveal from="down" blur={4}>
           {/* Mesma grade da tabela: logo na coluna 1 (sobre "Funcionalidade"),
               título nas colunas 2-3 (alinhado sobre os cards Mercado Comum/Somno). */}
           <div className="flex flex-col items-start gap-5 md:grid md:grid-cols-[1.7fr_1fr_1.05fr] md:items-center md:gap-x-4">
@@ -43,10 +43,10 @@ export function Comparison() {
         </Reveal>
 
         {/* ---- Tabela (desktop) ---- */}
-        <Reveal className="mt-12 hidden md:block">
+        <div className="mt-12 hidden md:block">
           <div className="grid grid-cols-[1.7fr_1fr_1.05fr] gap-x-4">
             {/* Coluna 1 — Funcionalidade (conteúdo centralizado; linhas recuadas e mais visíveis) */}
-            <div className="flex flex-col">
+            <Reveal from="up" className="flex flex-col">
               <div className="flex h-20 items-end justify-center pb-4 text-center text-lg font-semibold text-white/90">Funcionalidade</div>
               <ul className="divide-y divide-white/25 px-7">
                 {c.rows.map((r) => (
@@ -55,10 +55,10 @@ export function Comparison() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
 
             {/* Coluna 2 — Mercado Comum */}
-            <div className="overflow-hidden rounded-3xl bg-white text-ink shadow-soft">
+            <Reveal from="left" delay={0.08} className="overflow-hidden rounded-3xl bg-white text-ink shadow-soft">
               <div className="flex h-20 flex-col items-start justify-center px-7">
                 <span className="text-lg font-bold text-black">{c.colCommon}</span>
                 <span className="text-xs font-bold text-black">{c.colCommonSub}</span>
@@ -71,10 +71,10 @@ export function Comparison() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
 
             {/* Coluna 3 — Somno (destaque) */}
-            <div className="card-hover overflow-hidden rounded-3xl bg-gradient-to-b from-azure to-azure-600 text-white shadow-[0_24px_50px_-20px_rgba(0,173,238,0.6)] ring-1 ring-white/30 hover:shadow-[0_36px_66px_-20px_rgba(0,173,238,0.85)]">
+            <Reveal from="right" delay={0.16} className="card-hover overflow-hidden rounded-3xl bg-gradient-to-b from-azure to-azure-600 text-white shadow-[0_24px_50px_-20px_rgba(0,173,238,0.6)] ring-1 ring-white/30 hover:shadow-[0_36px_66px_-20px_rgba(0,173,238,0.85)]">
               <div className="flex h-20 items-center px-7 text-2xl font-bold">{c.colSomno}</div>
               <ul className="divide-y divide-white/45 px-7 pb-5">
                 {c.rows.map((r) => (
@@ -84,14 +84,20 @@ export function Comparison() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           </div>
-        </Reveal>
+        </div>
 
         {/* ---- Cards empilhados (mobile) ---- */}
         <div className="mt-10 space-y-3 md:hidden">
-          {c.rows.map((r) => (
-            <div key={r.f} className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+          {c.rows.map((r, i) => (
+            <Reveal
+              as="div"
+              key={r.f}
+              from={i % 2 ? 'right' : 'left'}
+              delay={i * 0.05}
+              className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10"
+            >
               <div className="font-semibold text-white">{r.f}</div>
               <div className="mt-3 space-y-2">
                 <div className="flex items-center justify-between rounded-lg bg-white/90 px-3 py-2 text-ink">
@@ -109,7 +115,7 @@ export function Comparison() {
                   </span>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 

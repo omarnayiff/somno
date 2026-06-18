@@ -104,21 +104,32 @@
 @media (scripting: enabled) {
   .reveal {
     opacity: 0;
-    transform: translateY(var(--reveal-y, 22px));
+    transform: perspective(1200px)
+      translate3d(var(--rv-x, 0px), var(--rv-y, 26px), 0)
+      rotateX(var(--rv-rx, 0deg)) rotateY(var(--rv-ry, 0deg)) rotate(var(--rv-rz, 0deg))
+      scale(var(--rv-s, 1));
+    filter: blur(var(--rv-blur, 0px));
     transition:
-      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  /* will-change só enquanto está oculto; ao revelar, libera a camada (texto nítido) */
+  .reveal:not(.reveal-in) {
+    will-change: opacity, transform, filter;
   }
   .reveal-in {
     opacity: 1;
     transform: none;
+    filter: blur(0);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .reveal-in {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     transition: none !important;
   }
 }
@@ -128,13 +139,17 @@
    prefers-reduced-motion pela regra global de base acima.
 ---------------------------------------------------------------------------- */
 
-/* Cartão interativo: leve elevação + sombra ao passar o mouse */
+/* Cartão interativo: leve elevação + sombra ao passar o mouse.
+   opacity/filter entram na lista para não anular o fade do .reveal quando
+   um elemento é, ao mesmo tempo, card-hover e alvo de revelação no scroll. */
 .card-hover {
   transition:
     transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.4s ease,
-    background-color 0.4s ease;
+    background-color 0.4s ease,
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 .card-hover:hover {
@@ -221,6 +236,64 @@
 }
 .pulse-ring {
   animation: pulse-ring 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Aurora: orbes de luz que derivam suavemente ao fundo das seções escuras.
+   Puramente decorativo (atrás do conteúdo). Animado só por transform/opacity. */
+.aurora-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  opacity: 0.45;
+  will-change: transform;
+}
+.aurora-orb-1 {
+  width: 32rem;
+  height: 32rem;
+  left: -10rem;
+  top: -12rem;
+  background: radial-gradient(circle at center, rgba(0, 173, 238, 0.6), rgba(0, 173, 238, 0) 70%);
+  animation: drift-1 19s ease-in-out infinite alternate;
+}
+.aurora-orb-2 {
+  width: 26rem;
+  height: 26rem;
+  right: -8rem;
+  bottom: -10rem;
+  background: radial-gradient(circle at center, rgba(41, 182, 240, 0.5), rgba(41, 182, 240, 0) 70%);
+  animation: drift-2 23s ease-in-out infinite alternate;
+}
+@keyframes drift-1 {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(60px, 40px, 0) scale(1.15);
+  }
+}
+@keyframes drift-2 {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+  to {
+    transform: translate3d(-50px, -30px, 0) scale(1);
+  }
+}
+
+/* Entrada on-load (hero) — não depende de scroll. `both` mantém o estado
+   inicial até animar, e sob reduced-motion cai direto no estado final. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Barra de progresso de scroll (topo da página) */

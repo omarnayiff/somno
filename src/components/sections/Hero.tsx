@@ -28,7 +28,7 @@ export function Hero() {
 
       <div className="container-x relative z-10 flex flex-1 flex-col justify-center py-12 md:py-16">
         <div className="max-w-xl">
-          <Logo eager className="mb-7 h-16 w-auto md:h-24" />
+          <Logo eager className="animate-rise mb-7 h-16 w-auto md:h-24" />
           <h1 className="text-[2rem] font-semibold leading-[1.12] tracking-tight text-navy sm:text-[2.9rem]">
             Seja o primeiro da sua{' '}
             <br className="hidden sm:inline" />
@@ -39,8 +39,13 @@ export function Hero() {
               tecnologia Somno
             </span>
           </h1>
-          <p className="mt-5 max-w-md text-lg leading-relaxed text-navy">{hero.sub}</p>
-          <div className="mt-8">
+          <p
+            className="animate-rise mt-5 max-w-md text-lg leading-relaxed text-navy"
+            style={{ animationDelay: '0.15s' }}
+          >
+            {hero.sub}
+          </p>
+          <div className="animate-rise mt-8" style={{ animationDelay: '0.28s' }}>
             <CtaButton label={hero.cta} glow />
           </div>
         </div>
