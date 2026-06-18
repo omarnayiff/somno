@@ -7,8 +7,9 @@ import { WaveDivider } from '../ui/Dividers'
 export function Hero() {
   return (
     <header className="relative isolate flex flex-col overflow-hidden bg-[#eef3f8] min-h-[560px] md:min-h-0 md:h-[68vw] md:max-h-[1000px]">
-      {/* Foto de fundo: na proporção da foto aparece quase inteira, sem zoom/corte. */}
-      <div className="absolute inset-0 -z-20">
+      {/* Foto de fundo: na proporção da foto aparece quase inteira, sem zoom/corte.
+          Ken Burns sutil (zoom lento) dá vida sem causar layout shift. */}
+      <div className="animate-kenburns absolute inset-0 -z-20">
         <OptImg
           name={hero.image}
           alt="Mulher relaxando na cama, abraçando um travesseiro"
@@ -40,7 +41,7 @@ export function Hero() {
           </h1>
           <p className="mt-5 max-w-md text-lg leading-relaxed text-navy">{hero.sub}</p>
           <div className="mt-8">
-            <CtaButton label={hero.cta} />
+            <CtaButton label={hero.cta} glow />
           </div>
         </div>
       </div>

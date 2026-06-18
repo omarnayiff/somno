@@ -55,13 +55,13 @@ export function Stats() {
                 as="li"
                 key={c.value}
                 delay={i * 0.05}
-                className={`flex aspect-[303/390] flex-col rounded-[38px] border-[3px] p-6 shadow-[0_18px_40px_-26px_rgba(0,0,0,0.6)] ${
+                className={`card-hover group flex aspect-[303/390] flex-col rounded-[38px] border-[3px] p-6 shadow-[0_18px_40px_-26px_rgba(0,0,0,0.6)] hover:shadow-[0_34px_60px_-24px_rgba(0,0,0,0.55)] ${
                   colored
-                    ? 'border-white/35 bg-gradient-to-b from-[#00ADEE] to-[#006388] text-white'
-                    : 'border-[#dbe6f1] bg-white text-navy'
+                    ? 'border-white/35 hover:border-white/70 bg-gradient-to-b from-[#00ADEE] to-[#006388] text-white'
+                    : 'border-[#dbe6f1] hover:border-azure bg-white text-navy'
                 }`}
               >
-                <PngIcon name={c.icon} className="h-20 w-20" />
+                <PngIcon name={c.icon} className="h-20 w-20 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3" />
                 <div className="mt-5 text-[1.7rem] font-extrabold leading-none">{c.value}</div>
                 <p className={`mt-2 text-sm leading-snug ${colored ? 'text-white/90' : 'text-navy'}`}>{c.label}</p>
               </Reveal>

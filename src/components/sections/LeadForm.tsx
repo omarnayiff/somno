@@ -48,13 +48,13 @@ export function LeadForm() {
                     placeholder={field.label}
                     autoComplete={field.autoComplete}
                     required={field.name !== 'segmento'}
-                    className="w-full rounded-xl bg-white px-5 py-4 text-ink shadow-sm outline-none ring-2 ring-transparent transition placeholder:text-muted/70 focus:ring-navy"
+                    className="w-full rounded-xl bg-white px-5 py-4 text-ink shadow-sm outline-none ring-2 ring-transparent transition duration-300 placeholder:text-muted/70 hover:ring-navy/25 focus:-translate-y-0.5 focus:shadow-md focus:ring-navy"
                   />
                 </div>
               ))}
               <button
                 type="submit"
-                className="mt-1 w-full rounded-xl bg-navy px-6 py-4 text-base font-bold text-white shadow-lg transition hover:bg-navy-800"
+                className="btn-shine mt-1 w-full rounded-xl bg-navy px-6 py-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-navy-800 hover:shadow-xl active:translate-y-0 active:scale-[0.99]"
               >
                 {f.submit}
               </button>

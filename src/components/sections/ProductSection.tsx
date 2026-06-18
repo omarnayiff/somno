@@ -13,7 +13,7 @@ function FeatureCard({ p }: { p: Product }) {
   const cardDark = p.variant === 'navy'
   return (
     <div
-      className={`rounded-[1.5rem] p-7 shadow-2xl md:p-9 ${
+      className={`card-hover rounded-[1.5rem] p-7 shadow-2xl hover:shadow-[0_40px_80px_-30px_rgba(0,0,0,0.75)] md:p-9 ${
         cardDark
           ? 'bg-gradient-to-br from-card-dark to-navy-900 text-white'
           : 'bg-charcoal/90 text-white ring-1 ring-white/10 backdrop-blur-md'
@@ -31,8 +31,8 @@ function FeatureCard({ p }: { p: Product }) {
       </p>
       <ul className="mt-6 space-y-3">
         {p.features.map((f) => (
-          <li key={f} className="flex items-center gap-3 text-[0.95rem]">
-            <img src={`${base}icons/check-badge.png`} alt="" width={20} height={20} className="h-5 w-5 shrink-0" />
+          <li key={f} className="group flex items-center gap-3 text-[0.95rem] transition-transform duration-300 hover:translate-x-1.5">
+            <img src={`${base}icons/check-badge.png`} alt="" width={20} height={20} className="h-5 w-5 shrink-0 transition-transform duration-300 group-hover:scale-125" />
             <span>{f}</span>
           </li>
         ))}

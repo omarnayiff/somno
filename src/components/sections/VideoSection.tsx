@@ -30,9 +30,11 @@ export function VideoSection() {
           <button
             type="button"
             aria-label="Reproduzir vídeo de demonstração do Somno"
-            className="group relative mx-auto grid aspect-[9/16] w-full max-w-[360px] place-items-center rounded-[1.6rem] border-2 border-azure bg-[#d8dce0] shadow-soft transition hover:bg-[#cfd3d7]"
+            className="card-hover group relative mx-auto grid aspect-[9/16] w-full max-w-[360px] place-items-center overflow-hidden rounded-[1.6rem] border-2 border-azure bg-[#d8dce0] shadow-soft transition-colors hover:border-azure-600 hover:bg-[#cfd3d7] hover:shadow-[0_30px_55px_-22px_rgba(0,69,148,0.5)]"
           >
-            <span className="grid h-16 w-16 place-items-center rounded-full bg-white/95 text-azure shadow-lg transition-transform duration-200 group-hover:scale-110">
+            {/* anel pulsante chamando atenção para o play */}
+            <span className="pulse-ring pointer-events-none absolute h-16 w-16 rounded-full bg-white/60" aria-hidden="true" />
+            <span className="relative grid h-16 w-16 place-items-center rounded-full bg-white text-azure shadow-lg transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
               <PlayIcon className="ml-1 h-7 w-7" />
             </span>
           </button>

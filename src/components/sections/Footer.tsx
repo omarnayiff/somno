@@ -13,9 +13,10 @@ export function Footer() {
         </p>
         <a
           href="#contato"
-          className="text-sm font-semibold text-azure transition hover:text-white"
+          className="group text-sm font-semibold text-azure transition-colors duration-300 hover:text-white"
         >
-          Garanta sua exclusividade →
+          Garanta sua exclusividade{' '}
+          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
         </a>
       </div>
     </footer>

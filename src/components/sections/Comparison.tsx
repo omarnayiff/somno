@@ -74,12 +74,12 @@ export function Comparison() {
             </div>
 
             {/* Coluna 3 — Somno (destaque) */}
-            <div className="overflow-hidden rounded-3xl bg-gradient-to-b from-azure to-azure-600 text-white shadow-[0_24px_50px_-20px_rgba(0,173,238,0.6)] ring-1 ring-white/30">
+            <div className="card-hover overflow-hidden rounded-3xl bg-gradient-to-b from-azure to-azure-600 text-white shadow-[0_24px_50px_-20px_rgba(0,173,238,0.6)] ring-1 ring-white/30 hover:shadow-[0_36px_66px_-20px_rgba(0,173,238,0.85)]">
               <div className="flex h-20 items-center px-7 text-2xl font-bold">{c.colSomno}</div>
               <ul className="divide-y divide-white/45 px-7 pb-5">
                 {c.rows.map((r) => (
-                  <li key={r.f} className="flex h-14 items-center gap-2.5 text-left text-sm font-medium">
-                    <PngIcon name="check-somno" className="h-7 w-7 shrink-0" />
+                  <li key={r.f} className="group flex h-14 items-center gap-2.5 text-left text-sm font-medium">
+                    <PngIcon name="check-somno" className="h-7 w-7 shrink-0 transition-transform duration-300 group-hover:scale-110" />
                     <span>{r.somno}</span>
                   </li>
                 ))}

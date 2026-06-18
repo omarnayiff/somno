@@ -122,3 +122,115 @@
     transition: none !important;
   }
 }
+
+/* ----------------------------------------------------------------------------
+   Microinterações modernas (hover / scroll). Todas neutralizadas sob
+   prefers-reduced-motion pela regra global de base acima.
+---------------------------------------------------------------------------- */
+
+/* Cartão interativo: leve elevação + sombra ao passar o mouse */
+.card-hover {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    background-color 0.4s ease;
+  will-change: transform;
+}
+.card-hover:hover {
+  transform: translateY(-7px);
+}
+
+/* Botão premium: faixa de brilho que atravessa no hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 70%
+  );
+  transform: translateX(-160%);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-shine:hover::after {
+  transform: translateX(160%);
+}
+
+/* Brilho pulsante p/ o CTA principal — chama atenção de forma sutil */
+@keyframes cta-glow {
+  0%,
+  100% {
+    box-shadow: 0 14px 30px -12px rgba(0, 69, 148, 0.6);
+  }
+  50% {
+    box-shadow: 0 20px 46px -10px rgba(0, 173, 238, 0.7);
+  }
+}
+.cta-glow {
+  animation: cta-glow 3.4s ease-in-out infinite;
+}
+
+/* Flutuação sutil (ícones/elementos decorativos) */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.animate-float {
+  animation: float-soft 4.5s ease-in-out infinite;
+}
+
+/* Ken Burns: zoom lento e contínuo no fundo do hero (dá "vida" à foto) */
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.animate-kenburns {
+  animation: kenburns 26s ease-in-out infinite alternate;
+}
+
+/* Anel pulsante (chama atenção, ex.: botão de play) */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  70%,
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Barra de progresso de scroll (topo da página) */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--progress, 0));
+  background: linear-gradient(90deg, var(--color-navy), var(--color-azure));
+  z-index: 60;
+  pointer-events: none;
+}

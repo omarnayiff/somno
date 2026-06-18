@@ -7,11 +7,13 @@ import { VideoSection } from './components/sections/VideoSection'
 import { Benefits } from './components/sections/Benefits'
 import { LeadForm } from './components/sections/LeadForm'
 import { Footer } from './components/sections/Footer'
+import { ScrollProgress } from './components/ui/ScrollProgress'
 import { products } from './data/content'
 
 export default function App() {
   return (
     <>
+      <ScrollProgress />
       <Hero />
       <main>
         <Stats />
