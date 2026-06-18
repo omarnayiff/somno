@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+
+/* Inter variable (latino), self-hosted + preload no index.html (LCP rápido). */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2-variations');
+}
+
+/*
+  Design tokens da Somno — ESTIMADOS a partir dos prints (Figma).
+  Fonte de verdade: design/tokens.md. Confirmar hex exatos com o usuário.
+*/
+@theme {
+  /* ---- Azuis da marca (AMOSTRADOS dos prints) ---- */
+  --color-navy-900: #052574; /* navy profundo — gradiente do comparativo */
+  --color-navy-800: #003f86;
+  --color-navy: #004594; /* primária — fundos escuros (stats/benefícios/aplicações) */
+  --color-navy-600: #0a57ae;
+  --color-azure: #00adee; /* azul vibrante — form/CTA, cards e destaque sobre navy */
+  --color-azure-600: #0093cc; /* destaque sobre fundo claro (mantém contraste AA) */
+  --color-azure-700: #0077a8;
+  --color-sky: #29b6f0; /* azul claro de apoio */
+  --color-indigo-brand: #2e3192; /* azul do logotipo Somno */
+
+  /* ---- Neutros ---- */
+  --color-ink: #0e1726; /* texto principal escuro */
+  --color-muted: #5b6675; /* texto secundário */
+  --color-line: #dfe5ec; /* divisórias/bordas suaves */
+  --color-surface: #eef1f5; /* cinza de fundo (seção vídeo, coluna tabela) */
+  --color-card-dark: #0c2238; /* card de features Colchões (gradiente navy) */
+  --color-charcoal: #2b2f36; /* card de features Spring (sobre foto) */
+
+  /* ---- Tipografia ---- */
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* ---- Raio / sombras ---- */
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+  --shadow-card: 0 18px 40px -16px rgb(11 77 162 / 0.35);
+  --shadow-soft: 0 10px 30px -12px rgb(14 23 38 / 0.18);
+}
+
+/* Container central padrão da página */
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 1.25rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  /* Acessibilidade: respeitar quem prefere menos movimento */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* Foco visível para navegação por teclado */
+  :focus-visible {
+    outline: 3px solid var(--color-azure);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Animação de entrada em scroll (ver componente Reveal).
+   Padrão = VISÍVEL (sem JS / pré-renderizado / crawlers).
+   Só esconde+anima quando há scripting, evitando conteúdo invisível. */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(var(--reveal-y, 22px));
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

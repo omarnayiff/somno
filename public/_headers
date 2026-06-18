@@ -1,0 +1,14 @@
+# Cloudflare Pages — cabecalhos HTTP
+
+# Cache agressivo para assets com hash/imutaveis
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Seguranca em todas as rotas
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()

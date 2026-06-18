@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# build output
+dist/
+out/
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# imagens-fonte pesadas (entrada do otimizador) + temporarios
+# os assets OTIMIZADOS ficam versionados em public/assets e public/icons
+/images/
+/icones/
+/.thumbs/
