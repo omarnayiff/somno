@@ -8,7 +8,7 @@ export function LeadForm() {
   return (
     <section id="contato" className="bg-azure text-white" aria-labelledby="form-title">
       <div className="container-x grid gap-10 py-16 md:grid-cols-2 md:gap-14 md:py-24">
-        <Reveal from="left" blur={4}>
+        <Reveal from="left">
           <h2 id="form-title" className="text-4xl font-extrabold leading-[1.1] sm:text-5xl">
             Garanta agora<br />
             sua <span className="text-navy">condição</span><br />

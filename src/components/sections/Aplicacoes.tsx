@@ -16,7 +16,7 @@ export function Aplicacoes() {
     >
       <Aurora />
       <div className="container-x relative z-10 py-16 md:py-20">
-        <Reveal from="down" blur={4}>
+        <Reveal from="down">
           <h2 id="aplic-title" className="text-center text-3xl font-extrabold sm:text-4xl">
             {a.heading}
           </h2>
@@ -24,7 +24,7 @@ export function Aplicacoes() {
 
         <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {a.items.map((it, i) => (
-            <Reveal as="li" key={it.label} from={itemDirs[i % itemDirs.length]} delay={i * 0.05}>
+            <Reveal as="li" key={it.label} from={itemDirs[i % itemDirs.length]} delay={i * 0.04}>
               <figure className="card-hover group h-full overflow-hidden rounded-2xl bg-navy p-2.5 shadow-soft ring-1 ring-white hover:shadow-[0_30px_55px_-22px_rgba(0,0,0,0.6)] hover:ring-azure">
                 <div className="overflow-hidden rounded-xl">
                   <OptImg

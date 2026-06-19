@@ -74,8 +74,8 @@ function FullbleedProduct({ p }: { p: Product }) {
       }`}>
         <Reveal
           from={cardLeft ? 'tilt-left' : 'tilt-right'}
-          distance={56}
-          blur={6}
+          distance={28}
+          blur={3}
           className={`w-full ${cardLeft ? 'max-w-sm md:max-w-md' : 'max-w-md md:max-w-lg'}`}
         >
           <FeatureCard p={p} />

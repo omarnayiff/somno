@@ -7,7 +7,7 @@ export function VideoSection() {
   return (
     <section className="relative bg-surface" aria-labelledby="video-title">
       <div className="container-x grid items-center gap-10 py-16 md:grid-cols-2 md:gap-14 md:py-24 md:pb-36">
-        <Reveal from="left" blur={4}>
+        <Reveal from="left">
           <h2 id="video-title" className="text-3xl font-extrabold leading-[1.1] text-ink sm:text-[2.7rem]">
             {v.headingLead.split('\n').map((line, i, arr) => (
               <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
@@ -26,7 +26,7 @@ export function VideoSection() {
           </p>
         </Reveal>
 
-        <Reveal from="tilt-right" distance={52} blur={6} delay={0.1}>
+        <Reveal from="tilt-right" distance={28} blur={3} delay={0.1}>
           <button
             type="button"
             aria-label="Reproduzir vídeo de demonstração do Somno"

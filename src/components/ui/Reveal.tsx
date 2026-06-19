@@ -51,29 +51,29 @@ function vars(from: RevealFrom, d: number, blur: number): CSSProperties {
       v['--rv-x'] = `${d}px`
       break
     case 'zoom':
-      v['--rv-s'] = '0.92'
-      v['--rv-y'] = `${d * 0.5}px`
+      v['--rv-s'] = '0.96'
+      v['--rv-y'] = `${d * 0.35}px`
       break
     case 'zoom-out':
-      v['--rv-s'] = '1.08'
+      v['--rv-s'] = '1.04'
       break
     case 'tilt-left':
       v['--rv-x'] = `${-d}px`
-      v['--rv-ry'] = '13deg'
-      v['--rv-y'] = `${d * 0.35}px`
+      v['--rv-ry'] = '7deg'
+      v['--rv-y'] = `${d * 0.25}px`
       break
     case 'tilt-right':
       v['--rv-x'] = `${d}px`
-      v['--rv-ry'] = '-13deg'
-      v['--rv-y'] = `${d * 0.35}px`
+      v['--rv-ry'] = '-7deg'
+      v['--rv-y'] = `${d * 0.25}px`
       break
     case 'flip-up':
-      v['--rv-rx'] = '15deg'
+      v['--rv-rx'] = '8deg'
       v['--rv-y'] = `${d}px`
       break
     case 'rotate':
-      v['--rv-rz'] = '-5deg'
-      v['--rv-s'] = '0.96'
+      v['--rv-rz'] = '-3deg'
+      v['--rv-s'] = '0.98'
       v['--rv-y'] = `${d}px`
       break
   }
@@ -123,7 +123,7 @@ export function Reveal({
   }, [])
 
   const dir: RevealFrom = from ?? 'up'
-  const dist = distance ?? y ?? 26
+  const dist = distance ?? y ?? 16
   const style = { transitionDelay: `${delay}s`, ...vars(dir, dist, blur) } as CSSProperties
 
   return (

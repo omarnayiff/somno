@@ -8,7 +8,7 @@ export function Benefits() {
     <section className="relative isolate overflow-hidden bg-navy text-white" aria-labelledby="benefits-title">
       <Aurora />
       <div className="container-x relative z-10 py-14 md:py-20">
-        <Reveal from="zoom" blur={4} className="mx-auto max-w-4xl text-center">
+        <Reveal from="zoom" className="mx-auto max-w-4xl text-center">
           <h2 id="benefits-title" className="text-3xl font-extrabold leading-[1.12] sm:text-[2.6rem]">
             <span className="text-azure">{b.headingAccent}</span>{' '}
             <span className="text-white">{b.headingRest}</span>
@@ -19,16 +19,12 @@ export function Benefits() {
           <div className="mt-12 rounded-2xl border border-azure/40 p-3">
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {b.items.map((it, i) => (
-                <Reveal
-                  as="li"
-                  key={it.title}
-                  from="zoom"
-                  delay={i * 0.08}
-                  className="card-hover group rounded-xl bg-azure p-6 hover:bg-azure-600 hover:shadow-[0_24px_50px_-20px_rgba(0,173,238,0.7)]"
-                >
-                  <PngIcon name={it.icon} className="h-10 w-10 transition-transform duration-300 group-hover:scale-110" />
-                  <h3 className="mt-5 text-lg font-bold leading-snug">{it.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/90">{it.text}</p>
+                <Reveal as="li" key={it.title} from="zoom" delay={i * 0.05}>
+                  <div className="card-hover group h-full rounded-xl bg-azure p-6 hover:bg-azure-600 hover:shadow-[0_24px_50px_-20px_rgba(0,173,238,0.7)]">
+                    <PngIcon name={it.icon} className="h-10 w-10 transition-transform duration-300 group-hover:scale-110" />
+                    <h3 className="mt-5 text-lg font-bold leading-snug">{it.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/90">{it.text}</p>
+                  </div>
                 </Reveal>
               ))}
             </ul>

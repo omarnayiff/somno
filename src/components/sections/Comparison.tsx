@@ -13,7 +13,7 @@ export function Comparison() {
       aria-labelledby="cmp-title"
     >
       <div className="container-x py-16 md:py-24">
-        <Reveal from="down" blur={4}>
+        <Reveal from="down">
           {/* Mesma grade da tabela: logo na coluna 1 (sobre "Funcionalidade"),
               título nas colunas 2-3 (alinhado sobre os cards Mercado Comum/Somno). */}
           <div className="flex flex-col items-start gap-5 md:grid md:grid-cols-[1.7fr_1fr_1.05fr] md:items-center md:gap-x-4">
@@ -58,7 +58,7 @@ export function Comparison() {
             </Reveal>
 
             {/* Coluna 2 — Mercado Comum */}
-            <Reveal from="left" delay={0.08} className="overflow-hidden rounded-3xl bg-white text-ink shadow-soft">
+            <Reveal from="left" delay={0.06} className="overflow-hidden rounded-3xl bg-white text-ink shadow-soft">
               <div className="flex h-20 flex-col items-start justify-center px-7">
                 <span className="text-lg font-bold text-black">{c.colCommon}</span>
                 <span className="text-xs font-bold text-black">{c.colCommonSub}</span>
@@ -74,16 +74,18 @@ export function Comparison() {
             </Reveal>
 
             {/* Coluna 3 — Somno (destaque) */}
-            <Reveal from="right" delay={0.16} className="card-hover overflow-hidden rounded-3xl bg-gradient-to-b from-azure to-azure-600 text-white shadow-[0_24px_50px_-20px_rgba(0,173,238,0.6)] ring-1 ring-white/30 hover:shadow-[0_36px_66px_-20px_rgba(0,173,238,0.85)]">
-              <div className="flex h-20 items-center px-7 text-2xl font-bold">{c.colSomno}</div>
-              <ul className="divide-y divide-white/45 px-7 pb-5">
-                {c.rows.map((r) => (
-                  <li key={r.f} className="group flex h-14 items-center gap-2.5 text-left text-sm font-medium">
-                    <PngIcon name="check-somno" className="h-7 w-7 shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                    <span>{r.somno}</span>
-                  </li>
-                ))}
-              </ul>
+            <Reveal from="right" delay={0.12}>
+              <div className="card-hover overflow-hidden rounded-3xl bg-gradient-to-b from-azure to-azure-600 text-white shadow-[0_24px_50px_-20px_rgba(0,173,238,0.6)] ring-1 ring-white/30 hover:shadow-[0_36px_66px_-20px_rgba(0,173,238,0.85)]">
+                <div className="flex h-20 items-center px-7 text-2xl font-bold">{c.colSomno}</div>
+                <ul className="divide-y divide-white/45 px-7 pb-5">
+                  {c.rows.map((r) => (
+                    <li key={r.f} className="group flex h-14 items-center gap-2.5 text-left text-sm font-medium">
+                      <PngIcon name="check-somno" className="h-7 w-7 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                      <span>{r.somno}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Reveal>
           </div>
         </div>

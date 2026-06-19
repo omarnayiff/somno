@@ -104,15 +104,16 @@
 @media (scripting: enabled) {
   .reveal {
     opacity: 0;
-    transform: perspective(1200px)
-      translate3d(var(--rv-x, 0px), var(--rv-y, 26px), 0)
+    transform: perspective(1400px)
+      translate3d(var(--rv-x, 0px), var(--rv-y, 16px), 0)
       rotateX(var(--rv-rx, 0deg)) rotateY(var(--rv-ry, 0deg)) rotate(var(--rv-rz, 0deg))
       scale(var(--rv-s, 1));
     filter: blur(var(--rv-blur, 0px));
+    /* easing macio (easeOutCubic) + duração maior = entrada calma e leve */
     transition:
-      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-      filter 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.95s cubic-bezier(0.33, 1, 0.68, 1),
+      transform 1.05s cubic-bezier(0.33, 1, 0.68, 1),
+      filter 0.95s cubic-bezier(0.33, 1, 0.68, 1);
   }
   /* will-change só enquanto está oculto; ao revelar, libera a camada (texto nítido) */
   .reveal:not(.reveal-in) {
@@ -139,21 +140,19 @@
    prefers-reduced-motion pela regra global de base acima.
 ---------------------------------------------------------------------------- */
 
-/* Cartão interativo: leve elevação + sombra ao passar o mouse.
-   opacity/filter entram na lista para não anular o fade do .reveal quando
-   um elemento é, ao mesmo tempo, card-hover e alvo de revelação no scroll. */
+/* Cartão interativo: leve elevação + sombra ao passar o mouse. Fica em
+   elemento SEPARADO do .reveal (o reveal envolve o card) para o hover manter
+   seu tempo curto sem herdar a transição lenta da revelação no scroll. */
 .card-hover {
   transition:
     transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.4s ease,
-    background-color 0.4s ease,
-    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    background-color 0.4s ease;
   will-change: transform;
 }
 .card-hover:hover {
-  transform: translateY(-7px);
+  transform: translateY(-6px);
 }
 
 /* Botão premium: faixa de brilho que atravessa no hover */
@@ -285,7 +284,7 @@
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -293,7 +292,7 @@
   }
 }
 .animate-rise {
-  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise 0.9s cubic-bezier(0.33, 1, 0.68, 1) both;
 }
 
 /* Barra de progresso de scroll (topo da página) */

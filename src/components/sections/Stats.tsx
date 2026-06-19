@@ -13,7 +13,7 @@ export function Stats() {
     <section className="relative isolate overflow-hidden bg-navy text-white" aria-labelledby="stats-title">
       <Aurora />
       <div className="container-x relative z-10 grid gap-10 pt-20 pb-14 md:grid-cols-[0.85fr_1.45fr] md:gap-12 md:pt-28 md:pb-20">
-        <Reveal from="left" blur={4}>
+        <Reveal from="left">
           {/* Logo (tamanho original). Bloco normal (não-flex) p/ o w-auto
               preservar a proporção do logo e não esticar. */}
           <img
@@ -60,16 +60,20 @@ export function Stats() {
                 as="li"
                 key={c.value}
                 from={cardDirs[i % cardDirs.length]}
-                delay={i * 0.07}
-                className={`card-hover group flex aspect-[303/390] flex-col rounded-[38px] border-[3px] p-6 shadow-[0_18px_40px_-26px_rgba(0,0,0,0.6)] hover:shadow-[0_34px_60px_-24px_rgba(0,0,0,0.55)] ${
-                  colored
-                    ? 'border-white/35 hover:border-white/70 bg-gradient-to-b from-[#00ADEE] to-[#006388] text-white'
-                    : 'border-[#dbe6f1] hover:border-azure bg-white text-navy'
-                }`}
+                delay={i * 0.05}
+                className="aspect-[303/390]"
               >
-                <PngIcon name={c.icon} className="h-20 w-20 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3" />
-                <div className="mt-5 text-[1.7rem] font-extrabold leading-none">{c.value}</div>
-                <p className={`mt-2 text-sm leading-snug ${colored ? 'text-white/90' : 'text-navy'}`}>{c.label}</p>
+                <div
+                  className={`card-hover group flex h-full flex-col rounded-[38px] border-[3px] p-6 shadow-[0_18px_40px_-26px_rgba(0,0,0,0.6)] hover:shadow-[0_34px_60px_-24px_rgba(0,0,0,0.55)] ${
+                    colored
+                      ? 'border-white/35 hover:border-white/70 bg-gradient-to-b from-[#00ADEE] to-[#006388] text-white'
+                      : 'border-[#dbe6f1] hover:border-azure bg-white text-navy'
+                  }`}
+                >
+                  <PngIcon name={c.icon} className="h-20 w-20 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3" />
+                  <div className="mt-5 text-[1.7rem] font-extrabold leading-none">{c.value}</div>
+                  <p className={`mt-2 text-sm leading-snug ${colored ? 'text-white/90' : 'text-navy'}`}>{c.label}</p>
+                </div>
               </Reveal>
             )
           })}
