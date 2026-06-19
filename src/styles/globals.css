@@ -109,11 +109,11 @@
       rotateX(var(--rv-rx, 0deg)) rotateY(var(--rv-ry, 0deg)) rotate(var(--rv-rz, 0deg))
       scale(var(--rv-s, 1));
     filter: blur(var(--rv-blur, 0px));
-    /* easing macio (easeOutCubic) + duração maior = entrada calma e leve */
+    /* entrada bem calma: duração longa + curva de partida suave (easeOutQuad) */
     transition:
-      opacity 0.95s cubic-bezier(0.33, 1, 0.68, 1),
-      transform 1.05s cubic-bezier(0.33, 1, 0.68, 1),
-      filter 0.95s cubic-bezier(0.33, 1, 0.68, 1);
+      opacity 1.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 1.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+      filter 1.4s cubic-bezier(0.22, 0.61, 0.36, 1);
   }
   /* will-change só enquanto está oculto; ao revelar, libera a camada (texto nítido) */
   .reveal:not(.reveal-in) {
@@ -292,7 +292,7 @@
   }
 }
 .animate-rise {
-  animation: rise 0.9s cubic-bezier(0.33, 1, 0.68, 1) both;
+  animation: rise 1.3s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 /* Barra de progresso de scroll (topo da página) */
