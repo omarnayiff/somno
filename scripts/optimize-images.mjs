@@ -17,9 +17,11 @@ const OUT_ICONS = path.join(root, 'public', 'icons')
 // colchoes/spring sao exibidas FULLBLEED (100vw) -> usar a resolucao nativa (1672)
 // p/ nao dar upscale e perder qualidade em telas largas.
 const HERO_LIKE = [
-  { src: 'f36e93720a3c39dbb4cfeb411cbf84a174852919.png', out: 'hero', width: 1400, og: true },
+  { src: 'hero.jpg', out: 'hero', width: 1400, og: true },
   { src: 'c0abfccc0bc066b178e068f811dadb0f728eb197.png', out: 'colchoes', width: 1672 },
   { src: '5eb6fda16988bf5cdf86a4850858c4b5cf173e7a.png', out: 'spring', width: 1672 },
+  { src: 'img-cards.jpg', out: 'img-cards', width: 1200 },
+  { src: 'img-card2.png', out: 'img-card2', width: 1200 },
 ]
 
 // Fotos verticais (2731x4096) usadas em cards pequenos da secao "Aplicacoes".
@@ -95,6 +97,20 @@ async function run() {
     await sharp(logoSrc).webp({ quality: 92, alphaQuality: 100 }).toFile(path.join(OUT_ASSETS, 'logo-somno.webp'))
     await copyFile(logoSrc, path.join(OUT_ASSETS, 'logo-somno.png'))
     console.log('logo: somno')
+  }
+  // Logo LIDER (parceiro homologador) -> webp + png (mantem transparencia)
+  const liderSrc = path.join(IMG, 'logo 1.png')
+  if (existsSync(liderSrc)) {
+    await sharp(liderSrc).webp({ quality: 92, alphaQuality: 100 }).toFile(path.join(OUT_ASSETS, 'logo-lider.webp'))
+    await copyFile(liderSrc, path.join(OUT_ASSETS, 'logo-lider.png'))
+    console.log('logo: lider')
+  }
+  // Logo SPRINGFLEX (parceiro homologador do comparativo de poltronas) -> webp + png
+  const springSrc = path.join(IMG, 'logo2.png')
+  if (existsSync(springSrc)) {
+    await sharp(springSrc).webp({ quality: 92, alphaQuality: 100 }).toFile(path.join(OUT_ASSETS, 'logo-springflex.webp'))
+    await copyFile(springSrc, path.join(OUT_ASSETS, 'logo-springflex.png'))
+    console.log('logo: springflex')
   }
   // Logo RAINOAH branco (ja webp leve) -> copia
   const whiteSrc = path.join(IMG, 'branca (1).webp')

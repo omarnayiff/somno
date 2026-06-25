@@ -30,3 +30,5 @@ Thumbs.db
 /images/
 /icones/
 /.thumbs/
+# video-fonte pesado (entrada do ffmpeg); o otimizado fica em public/video
+/video-src/

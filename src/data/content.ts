@@ -4,8 +4,8 @@
 export const hero = {
   headingLead: 'Seja o primeiro da sua região',
   headingAccent: 'a levar a tecnologia Somno',
-  sub: 'Condição exclusiva Formóbile para transformar seu produto em uma experiência completa de conforto e bem-estar.',
-  cta: 'QUERO GARANTIR EXCLUSIVIDADE',
+  sub: 'Uma solução criada para empresas que querem inovar, diferenciar seus produtos e entregar uma experiência que o cliente sente na prática.',
+  cta: 'Condição exclusiva de lançamento na Formóbile',
   image: 'hero',
 } as const
 
@@ -33,20 +33,39 @@ export const comparison = {
   colCommonSub: '(Sistemas convencionais)',
   colSomno: 'Somno',
   rows: [
-    { f: 'Programas de massagem', common: '2 a 8 programas', somno: '20 Programas', neg: false },
-    { f: 'Zonas de massagem', common: '1 a 2 zonas', somno: '4 zonas', neg: false },
-    { f: 'Níveis de intensidade', common: '2 níveis', somno: '10 níveis', neg: false },
-    { f: 'Cromoterapia integrada', common: 'Não possui', somno: '3 opções', neg: true },
-    { f: 'Terapia BioQuântica', common: 'Não possui', somno: 'Incluída', neg: true },
+    { f: 'Programas de massagem', common: '02 a 05 programas', somno: '10 programas', neg: false },
+    { f: 'Zonas de massagem', common: '04 zonas de massagem', somno: '04 zonas de massagem', neg: false },
+    { f: 'Níveis de intensidade', common: '03 níveis', somno: '10 níveis', neg: false },
+    { f: 'Controle simples', common: 'Sim', somno: 'Não, com tela ultramoderna touchscreen', neg: false },
+    { f: 'Quantidade de motores', common: '04 motores', somno: '08 motores', neg: false },
+    { f: 'Memória das configurações', common: 'Não acompanha', somno: 'Mantém as configurações mesmo após desligado', neg: false },
+    { f: 'Cromoterapia integrada', common: 'Não possui', somno: 'Incluída', neg: true },
+    { f: 'Terapia Bioquântica', common: 'Não possui', somno: 'Incluída', neg: true },
     { f: 'Despertador vibratório', common: 'Não possui', somno: 'Incluído', neg: true },
-    { f: 'Tela touchscreen colorida', common: 'Controle simples', somno: 'Touchscreen HD', neg: true },
     { f: 'Massagem bilateral (casal)', common: 'Alguns modelos', somno: 'Padrão', neg: false },
-    { f: 'Inclinação automática', common: 'Controle separado', somno: '1 Controle Spring', neg: true },
-    { f: 'Plug and play', common: 'Parcialmente', somno: '100%', neg: false },
-    { f: 'Suporte direto do fabricante', common: 'Via distribuidor', somno: 'Whatsapp - 24h', neg: true },
-    { f: 'Experiência no segmento', common: 'Variável', somno: '39 anos', neg: false },
+    { f: 'Suporte do fabricante', common: 'Via distribuidor', somno: 'WhatsApp – 24h', neg: false },
   ],
-  cta: 'QUERO GARANTIR EXCLUSIVIDADE',
+  cta: 'Quero aplicar no meu produto',
+} as const
+
+// Duplicata do comparativo (mesma estrutura) para uma segunda instância da seção.
+// Edite aqui para diferenciar o conteúdo do segundo comparativo.
+export const comparison2 = {
+  colCommon: 'Mercado Comum',
+  colCommonSub: '(Sistemas convencionais)',
+  colSomno: 'Somno',
+  rows: [
+    { f: 'Programas de massagem', common: '05', somno: '16 programas', neg: false },
+    { f: 'Zonas de massagem', common: '02', somno: '02', neg: false },
+    { f: 'Níveis de intensidade', common: '03 níveis', somno: '03 níveis', neg: false },
+    { f: 'Inclinação do assento', common: 'Controle separado', somno: 'Controle integrado', neg: false },
+    { f: 'Inclinação do encosto', common: 'Controle separado', somno: 'Controle integrado', neg: false },
+    { f: 'Plug and Play', common: 'Não', somno: 'Sim, montagem facilitada', neg: false },
+    { f: 'Suporte do fabricante', common: 'Via distribuidor', somno: 'Atendimento direto em até 24 horas via telefone e WhatsApp', neg: false },
+    { f: 'Experiência no segmento', common: 'Variável', somno: '39 anos de mercado', neg: false },
+    { f: 'Conexão USB', common: 'Depende do modelo', somno: 'Controle integrado', neg: false },
+  ],
+  cta: 'Quero aplicar no meu produto',
 } as const
 
 export type Product = {
@@ -84,7 +103,9 @@ export const products: Product[] = [
 ]
 
 export const applications = {
-  heading: 'Aplicações',
+  headingLead: 'Uma tecnologia. ',
+  headingAccent: 'Diversas possibilidades de aplicação.',
+  sub: 'Do colchão à poltrona, o Somno foi desenvolvido para agregar conforto, inovação e valor percebido ao produto final.',
   items: [
     { label: 'Colchões', image: 'app-colchoes' },
     { label: 'Poltronas', image: 'app-poltronas' },
@@ -123,8 +144,6 @@ export const leadForm = {
     { name: 'nome', label: 'Nome completo', type: 'text', autoComplete: 'name' },
     { name: 'whatsapp', label: 'WhatsApp', type: 'tel', autoComplete: 'tel' },
     { name: 'email', label: 'E-mail', type: 'email', autoComplete: 'email' },
-    { name: 'empresa', label: 'Empresa / fábrica', type: 'text', autoComplete: 'organization' },
-    { name: 'segmento', label: 'Segmento', type: 'text', autoComplete: 'off' },
     { name: 'cidade', label: 'Cidade', type: 'text', autoComplete: 'address-level2' },
   ],
   submit: 'Quero garantir minha condição exclusiva',

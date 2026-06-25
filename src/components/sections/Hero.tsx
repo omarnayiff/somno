@@ -14,7 +14,7 @@ export function Hero() {
           name={hero.image}
           alt="Mulher relaxando na cama, abraçando um travesseiro"
           width={1400}
-          height={787}
+          height={693}
           avif
           srcWidths={[640, 960]}
           loading="eager"

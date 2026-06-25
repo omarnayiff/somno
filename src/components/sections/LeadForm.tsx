@@ -47,7 +47,7 @@ export function LeadForm() {
                     type={field.type}
                     placeholder={field.label}
                     autoComplete={field.autoComplete}
-                    required={field.name !== 'segmento'}
+                    required
                     className="w-full rounded-xl bg-white px-5 py-4 text-ink shadow-sm outline-none ring-2 ring-transparent transition duration-300 placeholder:text-muted/70 hover:ring-navy/25 focus:-translate-y-0.5 focus:shadow-md focus:ring-navy"
                   />
                 </div>

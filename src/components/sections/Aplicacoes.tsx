@@ -1,6 +1,5 @@
 import { applications as a } from '../../data/content'
 import { OptImg } from '../ui/OptImg'
-import { CtaButton } from '../ui/CtaButton'
 import { Reveal } from '../ui/Reveal'
 import { Aurora } from '../ui/Aurora'
 
@@ -17,9 +16,16 @@ export function Aplicacoes() {
       <Aurora />
       <div className="container-x relative z-10 py-16 md:py-20">
         <Reveal from="down">
-          <h2 id="aplic-title" className="text-center text-3xl font-extrabold sm:text-4xl">
-            {a.heading}
+          <h2
+            id="aplic-title"
+            className="mx-auto whitespace-nowrap text-center font-semibold tracking-tight text-[clamp(0.74rem,3.2vw,2.5rem)]"
+          >
+            {a.headingLead}
+            <span className="text-azure">{a.headingAccent}</span>
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-white/80 sm:text-lg">
+            {a.sub}
+          </p>
         </Reveal>
 
         <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
@@ -41,10 +47,6 @@ export function Aplicacoes() {
             </Reveal>
           ))}
         </ul>
-
-        <div className="mt-12 flex justify-center">
-          <CtaButton label={a.cta} />
-        </div>
       </div>
     </section>
   )

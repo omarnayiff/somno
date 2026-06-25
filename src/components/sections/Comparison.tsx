@@ -1,43 +1,93 @@
-import { comparison as c } from '../../data/content'
+import type { ReactNode } from 'react'
+import { comparison } from '../../data/content'
 import { XCircle, PngIcon } from '../ui/icons'
 import { CtaButton } from '../ui/CtaButton'
+import { OptImg } from '../ui/OptImg'
 import { Reveal } from '../ui/Reveal'
 
 const base = import.meta.env.BASE_URL
 
-export function Comparison() {
+type ComparisonData = {
+  colCommon: string
+  colCommonSub: string
+  colSomno: string
+  rows: readonly { f: string; common: string; somno: string; neg: boolean }[]
+  cta: string
+}
+
+type Props = {
+  /** id único da seção (evita ids duplicados ao repetir o componente) */
+  id?: string
+  data?: ComparisonData
+  /** classe de fundo da <section> — permite fundo contínuo ao empilhar seções */
+  bgClassName?: string
+  /** nome-base da foto do cabeçalho em /assets (sem extensão) */
+  image?: string
+  imageAlt?: string
+  /** título do meio (aceita quebras com <br/>) */
+  title?: ReactNode
+  /** nome-base do logo de homologação em /assets (sem extensão) */
+  logo?: string
+  logoAlt?: string
+  /** texto pequeno acima do logo de homologação */
+  logoLabel?: string
+}
+
+export function Comparison({
+  id = 'comparativo',
+  data: c = comparison,
+  bgClassName = 'bg-[linear-gradient(180deg,#004594_0%,#063079_55%,#04205f_100%)]',
+  image = 'img-cards',
+  imageAlt = 'Colchão com a tecnologia Somno',
+  title = (
+    <>
+      Somno para<br />Colchões
+    </>
+  ),
+  logo = 'logo-lider',
+  logoAlt = 'Lider Espumas e Colchões',
+  logoLabel = 'Compatibilidade homologada por',
+}: Props = {}) {
+  const titleId = `${id}-title`
   return (
     <section
-      id="comparativo"
-      className="relative z-10 bg-[linear-gradient(180deg,#004594_0%,#063079_55%,#04205f_100%)] text-white"
-      aria-labelledby="cmp-title"
+      id={id}
+      className={`relative z-10 text-white ${bgClassName}`}
+      aria-labelledby={titleId}
     >
       <div className="container-x py-16 md:py-24">
         <Reveal from="down">
-          {/* Mesma grade da tabela: logo na coluna 1 (sobre "Funcionalidade"),
-              título nas colunas 2-3 (alinhado sobre os cards Mercado Comum/Somno). */}
-          <div className="flex flex-col items-start gap-5 md:grid md:grid-cols-[1.7fr_1fr_1.05fr] md:items-center md:gap-x-4">
-            <img
-              src={`${base}assets/logo-somno.webp`}
-              width={534}
-              height={234}
-              alt="Somno"
-              className="h-20 w-auto shrink-0 md:h-28 md:justify-self-center"
-              loading="lazy"
-              decoding="async"
+          {/* Cabeçalho da seção (fora dos cards): foto do colchão + título +
+              selo de homologação, alinhados às 3 colunas da tabela e na mesma
+              linha no desktop. */}
+          <div className="flex flex-col gap-6 md:grid md:grid-cols-[1.7fr_1fr_1.05fr] md:items-center md:gap-x-4">
+            <OptImg
+              name={image}
+              alt={imageAlt}
+              width={1200}
+              height={675}
+              avif
+              srcWidths={[640]}
+              sizes="(min-width:768px) 15rem, 65vw"
+              className="mx-auto block aspect-[5/4] w-full max-w-[15rem] rounded-2xl object-cover shadow-soft ring-2 ring-white"
             />
-            {/* Título + subtítulo nas colunas 2-3; bloco com a largura do título (w-fit)
-                para o subtítulo caber certinho na largura do título, alinhado à esquerda. */}
-            <div className="md:col-span-2 md:w-fit">
-              <h2
-                id="cmp-title"
-                className="font-helvetica text-[1.85rem] font-normal leading-[1.13] tracking-normal sm:text-[2.25rem]"
-              >
-                {/* 3 linhas como no print (quebras fixas só no desktop; mobile quebra natural). */}
-                <span className="text-white">Não é só mais um sistema de <br className="hidden sm:inline" />massagem.</span>{' '}
-                <span className="text-azure">Compare e veja a <br className="hidden sm:inline" />diferença.</span>
-              </h2>
-              <p className="mt-3 text-sm leading-snug text-white/70">{c.sub}</p>
+            <h2
+              id={titleId}
+              className="font-helvetica text-[2rem] font-normal leading-[1.08] tracking-normal sm:text-[2.35rem]"
+            >
+              {title}
+            </h2>
+            <div className="flex flex-col items-start gap-2.5">
+              <span className="text-xs font-medium text-white/85">{logoLabel}</span>
+              <img
+                src={`${base}assets/${logo}.webp`}
+                width={313}
+                height={121}
+                alt={logoAlt}
+                className="h-14 w-auto md:h-20"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </Reveal>
@@ -48,7 +98,7 @@ export function Comparison() {
             {/* Coluna 1 — Funcionalidade (conteúdo centralizado; linhas recuadas e mais visíveis) */}
             <Reveal from="up" className="flex flex-col">
               <div className="flex h-20 items-end justify-center pb-4 text-center text-lg font-semibold text-white/90">Funcionalidade</div>
-              <ul className="divide-y divide-white/25 px-7">
+              <ul className="mx-auto max-w-[78%] divide-y divide-white/25">
                 {c.rows.map((r) => (
                   <li key={r.f} className="flex h-14 items-center justify-center text-center text-[0.95rem] text-white/90">
                     {r.f}
