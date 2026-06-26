@@ -1,0 +1,4 @@
+# Cloudflare Pages — regras de redirecionamento
+# Landing single-page estatica: nao precisa de fallback de rotas.
+# Caso vire SPA com rotas no cliente, descomente a linha abaixo:
+# /*    /index.html   200
