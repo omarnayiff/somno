@@ -1,9 +1,54 @@
+import { useRef, useState } from 'react'
 import { video as v } from '../../data/content'
 import { PlayIcon } from '../ui/icons'
 import { WaveDivider } from '../ui/Dividers'
 import { Reveal } from '../ui/Reveal'
 
 const base = import.meta.env.BASE_URL
+
+/** Player de demonstração: mostra o poster + botão de play; só baixa o vídeo
+ *  (preload="none") quando o usuário clica. Ao tocar, exibe os controles nativos. */
+function DemoVideo() {
+  const ref = useRef<HTMLVideoElement>(null)
+  const [playing, setPlaying] = useState(false)
+
+  const start = () => {
+    const el = ref.current
+    if (!el) return
+    el.play()
+    setPlaying(true)
+  }
+
+  return (
+    <div className="card-hover relative mx-auto aspect-[9/16] w-full max-w-[360px] overflow-hidden rounded-[1.6rem] border-2 border-azure bg-[#d8dce0] shadow-soft transition-colors hover:border-azure-600 hover:shadow-[0_30px_55px_-22px_rgba(0,69,148,0.5)]">
+      <video
+        ref={ref}
+        className="h-full w-full object-cover"
+        poster={`${base}video/somno-poster.jpg`}
+        preload="none"
+        playsInline
+        controls={playing}
+        onEnded={() => setPlaying(false)}
+      >
+        <source src={`${base}video/somno-demo.mp4`} type="video/mp4" />
+      </video>
+
+      {!playing && (
+        <button
+          type="button"
+          onClick={start}
+          aria-label="Reproduzir vídeo de demonstração do Somno"
+          className="group absolute inset-0 grid place-items-center"
+        >
+          <span className="pulse-ring pointer-events-none absolute h-16 w-16 rounded-full bg-white/60" aria-hidden="true" />
+          <span className="relative grid h-16 w-16 place-items-center rounded-full bg-white text-azure shadow-lg transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
+            <PlayIcon className="ml-1 h-7 w-7" />
+          </span>
+        </button>
+      )}
+    </div>
+  )
+}
 
 export function VideoSection() {
   return (
@@ -29,28 +74,7 @@ export function VideoSection() {
         </Reveal>
 
         <Reveal from="tilt-right" distance={28} blur={3} delay={0.1}>
-          {/* Card-vitrine: leva direto ao formulário (#contato). */}
-          <a
-            href="#contato"
-            aria-label="Quero garantir minha condição exclusiva"
-            className="card-hover group relative mx-auto block aspect-[9/16] w-full max-w-[360px] overflow-hidden rounded-[1.6rem] border-2 border-azure bg-[#d8dce0] shadow-soft transition-colors hover:border-azure-600 hover:shadow-[0_30px_55px_-22px_rgba(0,69,148,0.5)]"
-          >
-            <img
-              src={`${base}video/somno-poster.jpg`}
-              alt="Somno aplicado em uma poltrona reclinável"
-              width={720}
-              height={1280}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover"
-            />
-            <span className="absolute inset-0 grid place-items-center">
-              <span className="pulse-ring pointer-events-none absolute h-16 w-16 rounded-full bg-white/60" aria-hidden="true" />
-              <span className="relative grid h-16 w-16 place-items-center rounded-full bg-white text-azure shadow-lg transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
-                <PlayIcon className="ml-1 h-7 w-7" />
-              </span>
-            </span>
-          </a>
+          <DemoVideo />
         </Reveal>
       </div>
 
